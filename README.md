@@ -1,2 +1,16 @@
-# Web-Advanced
-Xây dựng ứng dụng website bán hàng trực tuyến. Bài tập thực hành nhóm sử dụng NestJS, TypeScript và MySQL.
+# nestNode
+## Server
+
+```
+npm i -g @nestjs/cli
+
+nest new server
+
+npm install --save typeorm mysql2
+```
+## Client
+
+```
+npx create-react-app client
+
+```
