@@ -1,83 +1,17 @@
-# nestNode
-## Server
+# BÀI KIỂM TRA GIỮA KỲ - MÔN WEB NÂNG CAO
 
-```
-npm i -g @nestjs/cli
+## 1. Thông tin thành viên & Phân công công việc
+- **Sinh viên thực hiện:** Lê Hải Anh
+- **Mã số sinh viên:** 24100110
+- **Đối tượng đảm nhiệm:** `Product` (Thực hiện trọn gói cấu trúc: Entity, Controller, Service, Module, Provider và các chức năng CRUD).
 
-nest new server
+## 2. Các chức năng CRUD đã hoàn thành cho Product
+- **Create (Tạo):** [POST] `/products` - Tạo mới sản phẩm vào database.
+- **Read (Đọc):** [GET] `/products` - Lấy toàn bộ danh sách sản phẩm và [GET] `/products/:id` - Lấy chi tiết một sản phẩm theo ID.
+- **Update (Cập nhật):** [PUT] `/products/:id` - Cập nhật thông tin chi tiết của sản phẩm.
+- **Delete (Xóa):** [DELETE] `/products/:id` - Xóa hoàn toàn sản phẩm khỏi hệ thống.
 
-npm install --save typeorm mysql2
-```
-## Client
-
-```
-npx create-react-app client
-
-```
-
----
-
-## Bài tập (Assignments)
-
-**Yêu cầu 1:** Thực hiện API CRUD (Create, Read, Update, Delete).
-- Đã cài đặt backend quản lý khách hàng tại folder `server/src/customer` (sử dụng NestJS).
-- Các API endpoints chính của Customer:
-  - `GET /customers` : Xem danh sách
-  - `GET /customers/:id` : Xem chi tiết
-  - `POST /customers` : Thêm mới
-  - `PUT /customers/:id` : Cập nhật
-  - `DELETE /customers/:id` : Xóa
-
-**Yêu cầu 2:** Sinh viên vẽ lưu đồ thuật toán (Activity Diagram) của CRUD (2 điểm).
-- Dưới đây là mã nguồn `Mermaid` để sinh ra lưu đồ Activity Diagram tóm gọn cho chức năng CRUD User.
-- Bạn có thể copy mã này dán vào trang [Mermaid Live Editor](https://mermaid.live/) để xuất ảnh PNG/SVG. Github cũng hỗ trợ hiển thị trực tiếp.
-
-<details>
-<summary>Nhấn để mở xem code Mermaid (Activity Diagram)</summary>
-
-```mermaid
-flowchart TD
-    Start(["Bắt đầu"]) --> Menu{"Chọn chức năng\nCRUD User"}
-
-    %% =======================
-    %% Nhánh CREATE
-    %% =======================
-    Menu -->|CREATE| C_In[/"Nhập thông tin User mới"/]
-    C_In --> C_Val{"Hợp lệ?"}
-    C_Val -->|Sai| C_In
-    C_Val -->|Đúng| C_Save["Lưu vào DB"] 
-    C_Save --> Success
-
-    %% =======================
-    %% Nhánh READ
-    %% =======================
-    Menu -->|READ| R_DB["Truy vấn DB"]
-    R_DB --> R_View[/"Hiển thị dữ liệu User"/] 
-    R_View --> End(["Kết thúc"])
-
-    %% =======================
-    %% Nhánh UPDATE
-    %% =======================
-    Menu -->|UPDATE| U_In[/"Nhập thông tin User cần sửa"/]
-    U_In --> U_Val{"Hợp lệ?"}
-    U_Val -->|Sai| U_In
-    U_Val -->|Đúng| U_Save["Cập nhật DB"] 
-    U_Save --> Success
-
-    %% =======================
-    %% Nhánh DELETE
-    %% =======================
-    Menu -->|DELETE| D_Conf{"Xác nhận xóa User?"}
-    D_Conf -->|Hủy| End
-    D_Conf -->|Đồng ý| D_Save["Xóa User khỏi DB"] 
-    D_Save --> Success
-
-    %% =======================
-    %% Kết thúc chung
-    %% =======================
-    Success[/"Thông báo thành công"/] --> End
-
-    style Start fill:#111,stroke:#333,stroke-width:4px,color:#fff
-    style End fill:#111,stroke:#333,stroke-width:4px,color:#fff
-```
-</details>
+## 3. Cơ sở dữ liệu (Database)
+- Hệ quản trị CSDL: MySQL (Chạy môi trường Localhost).
+- Tên database: `ecommerce_db`
+- Cơ chế: Sử dụng tính năng `synchronize: true` của TypeORM để tự động khởi tạo cấu trúc bảng `products` từ Class Entity mà không cần chạy Script SQL thủ công.
