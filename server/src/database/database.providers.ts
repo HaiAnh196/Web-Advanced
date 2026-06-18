@@ -3,6 +3,7 @@ import * as path from 'path';
 import { STUDENT } from 'src/student/student.entity';
 import { DataSource } from 'typeorm';
 import { TOPICS } from '../topics/topics.entity';
+import { ORDER } from '../order/order.entity';
 
 export const databaseProviders = [
   {
@@ -15,11 +16,11 @@ export const databaseProviders = [
         username: 'avnadmin',
         password: 'AVNS_mftPAP8cG5l0Ih_cfL2',
         database: 'STUDENTSREG',
-        entities: [STUDENT, TOPICS],
+        entities: [STUDENT, TOPICS, ORDER],
         synchronize: true,
         ssl: {
           ca: fs
-            .readFileSync('/workspaces/nestNode/server/assets/ca.pem')
+            .readFileSync(path.join(__dirname, '../../assets/ca.pem'))
             .toString(),
         },
       });
