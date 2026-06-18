@@ -1,4 +1,5 @@
 import { Product } from '../products/product.entity';
+import { CUSTOMER } from '../customer/customer.entity';
 import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
@@ -12,7 +13,7 @@ export const databaseProviders = [
         username: 'root',
         password: 'LeHaiAnh196@',
         database: 'ecommerce_db',
-        entities: [Product],
+        entities: [Product, CUSTOMER],
         synchronize: true,
       });
       return dataSource.initialize();
