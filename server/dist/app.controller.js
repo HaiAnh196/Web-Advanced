@@ -21,7 +21,7 @@ let AppController = class AppController {
         return this.appService.getHello();
     }
     getTopics() {
-        return "this is testing";
+        return 'this is testing';
     }
 };
 exports.AppController = AppController;
