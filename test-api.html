@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API Đăng Ký & Đăng Nhập</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { color: #333; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { padding: 10px 15px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-right: 10px; }
+        button:hover { background-color: #0056b3; }
+        .result { margin-top: 20px; padding: 15px; background: #e9ecef; border-left: 5px solid #007BFF; font-family: monospace; white-space: pre-wrap; word-wrap: break-word;}
+        .success { border-left-color: #28a745; }
+        .error { border-left-color: #dc3545; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Test API (Đăng ký / Đăng nhập)</h2>
+    
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Nhập username" value="testuser1">
+    </div>
+    
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Nhập password" value="123456">
+    </div>
+    
+    <button onclick="testAPI('register')">1. GỌI API ĐĂNG KÝ</button>
+    <button onclick="testAPI('login')">2. GỌI API ĐĂNG NHẬP</button>
+
+    <div id="result" class="result">Kết quả trả về từ API sẽ hiển thị ở đây...</div>
+</div>
+
+<script>
+    async function testAPI(action) {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const resultDiv = document.getElementById('result');
+        
+        resultDiv.className = 'result';
+        resultDiv.textContent = 'Đang gọi API...';
+
+        try {
+            const response = await fetch(`http://localhost:5000/auth/${action}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+            
+            if (response.ok) {
+                resultDiv.classList.add('success');
+                resultDiv.innerHTML = `<strong>Thành công! [${response.status}]</strong>\n\n` + JSON.stringify(data, null, 2);
+            } else {
+                resultDiv.classList.add('error');
+                resultDiv.innerHTML = `<strong>Lỗi! [${response.status}]</strong>\n\n` + JSON.stringify(data, null, 2);
+            }
+        } catch (error) {
+            resultDiv.classList.add('error');
+            resultDiv.textContent = 'Không thể kết nối đến Server (Lỗi: ' + error.message + ').\n\nHãy đảm bảo bạn đã chạy lệnh "npm run start" trong thư mục server.';
+        }
+    }
+</script>
+
+</body>
+</html>

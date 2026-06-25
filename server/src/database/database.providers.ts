@@ -13,7 +13,7 @@ export const databaseProviders = [
         host: 'localhost',
         port: 3306,
         username: 'root',
-        password: 'LeHaiAnh196@',
+        password: '230706',
         database: 'ecommerce_db',
         entities: [Product, CUSTOMER, ORDER, User],
         synchronize: true,

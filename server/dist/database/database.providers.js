@@ -15,7 +15,7 @@ exports.databaseProviders = [
                 host: 'localhost',
                 port: 3306,
                 username: 'root',
-                password: 'LeHaiAnh196@',
+                password: '230706',
                 database: 'ecommerce_db',
                 entities: [product_entity_1.Product, customer_entity_1.CUSTOMER, order_entity_1.ORDER, user_entity_1.User],
                 synchronize: true,
