@@ -5,9 +5,10 @@ import { CustomerModule } from './customer/customer.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OrderModule } from './order/order.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [DatabaseModule, ProductModule, CustomerModule, OrderModule],
+  imports: [DatabaseModule, ProductModule, CustomerModule, OrderModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

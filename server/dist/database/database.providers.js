@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.databaseProviders = void 0;
 const product_entity_1 = require("../products/product.entity");
+const customer_entity_1 = require("../customer/customer.entity");
+const order_entity_1 = require("../order/order.entity");
+const user_entity_1 = require("../auth/user.entity");
 const typeorm_1 = require("typeorm");
 exports.databaseProviders = [
     {
@@ -14,7 +17,7 @@ exports.databaseProviders = [
                 username: 'root',
                 password: 'LeHaiAnh196@',
                 database: 'ecommerce_db',
-                entities: [product_entity_1.Product],
+                entities: [product_entity_1.Product, customer_entity_1.CUSTOMER, order_entity_1.ORDER, user_entity_1.User],
                 synchronize: true,
             });
             return dataSource.initialize();
